@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Control Panel - INTECAP</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0f172a; color: #f8fafc; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background-color: #1e293b; padding: 35px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); text-align: center; max-width: 450px; border: 1px solid #334155; }
+        h1 { color: #38bdf8; margin: 0 0 10px 0; font-size: 26px; }
+        h3 { color: #64748b; font-weight: 500; margin: 0 0 25px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .status-box { background-color: #022c22; border: 1px solid #059669; color: #34d399; padding: 20px; border-radius: 8px; font-weight: bold; font-family: 'Courier New', Courier, monospace; font-size: 16px; margin: 20px 0; text-align: left; line-height: 1.5; }
+        .badge { display: inline-block; background-color: #0ea5e9; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
+        p.footer { color: #64748b; font-size: 13px; margin-top: 25px; border-top: 1px solid #334155; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Dashboard de Infraestructura Cloud</h1>
+        <h3>Sistemas Operativos II - INTECAP</h3>
+        
+        <div class="badge">Ecosistema Contenerizado</div>
+        
+        <div class="status-box">
+{
+  "status": "UP",
+  "database_connection": "SUCCESS",
+  "environment": "Production-Cloud",
+  "provider": "Render-Infrastructure"
+}
+        </div>
+        
+        <p>Servidor Web Nginx desplegado mediante un pipeline de Integración Continua (CI/CD) de forma exitosa.</p>
+        <p class="footer">Evidencia de proyecto final - Conectividad y Monitoreo de Servicios</p>
+    </div>
+</body>
+</html>
