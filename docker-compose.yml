@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: db_produccion
+    environment:
+      POSTGRES_USER: usuario_admin
+      POSTGRES_PASSWORD: password_seguro123
+      POSTGRES_DB: devops_db
+    ports:
+      - "5432:5432"
+
+  api_web:
+    image: node:18-alpine
+    container_name: app_api
+    ports:
+      - "3000:3000"
+    command: >
+      sh -c "npm init -y && 
+             npm install express pg && 
+             echo 'const express = require(\"express\"); 
+                   const { Client } = require(\"pg\"); 
+                   const app = express(); 
+                   const client = new Client({ connectionString: process.env.DATABASE_URL }); 
+                   
+                   async function conectar() {
+                     try { await client.connect(); console.log(\"DB OK\"); } 
+                     catch(e) { setTimeout(conectar, 2000); }
+                   }
+                   conectar();
+
+                   app.get(\"/health\", async (req, res) => { 
+                     try { 
+                       await client.query(\"SELECT 1\"); 
+                       res.json({ status: \"UP\", database_connection: \"SUCCESS\" }); 
+                     } catch (e) { 
+                       res.status(500).json({ status: \"DOWN\" }); 
+                     } 
+                   }); 
+                   app.listen(3000);' > index.js && 
+             node index.js"
+    environment:
+      DATABASE_URL: postgres://usuario_admin:password_seguro123@postgres_db:5432/devops_db
+    depends_on:
+      - postgres_db
